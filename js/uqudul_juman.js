@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then(baits => {
+      console.log("Jumlah bait:", baits.length); // Tambahkan baris ini
       baits.forEach((bait, index) => {
         const p = document.createElement("p");
         p.id = `bait-${index + 1}`;
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Terjadi kesalahan:", error);
     });
 });
+
 
 
 
