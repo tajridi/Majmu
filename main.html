@@ -77,7 +77,7 @@
     </main>
 
     <script src="js/script.js"></script>
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("continue-container");
   const kitabPath = localStorage.getItem("lastReadKitab");
@@ -86,39 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (kitabPath && baitID) {
     const url = kitabPath + "#" + baitID;
     container.innerHTML = `
-      <a href="${url}" class="back-btn">لِمُتَابَعَةِ القِرَاءَةِ</a>
+      <a href="${url}" class="continue-btn">لِمُتَابَعَةِ القِرَاءَةِ</a>
     `;
+    console.log("✅ Tombol 'Lanjut Membaca' ditampilkan:", url);
   } else {
-    console.log("Belum ada riwayat bacaan terakhir.");
+    console.log("ℹ️ Belum ada riwayat bacaan terakhir.");
   }
 });
-        
-        if (latestData) {
-            // 2. Jika data ditemukan (yaitu ada kitab yang sudah dibaca)
-            
-            // Dapatkan nama kitab dari URL relatif, dan buat huruf besar
-            const urlParts = latestData.url.split('/');
-            const fileName = urlParts.pop();
-            const kitabName = fileName.replace('.html', '').toUpperCase();
-            
-            // Dapatkan nomor bait
-            const baitNumber = latestData.id ? latestData.id.split('-')[1] : 'Terakhir';
+</script>
 
-            lastReadBtn.textContent = `Lanjut Membaca ${kitabName}: Bait ${baitNumber}`;
-            lastReadBtn.style.display = 'block'; 
-
-            // 3. Atur fungsi klik tombol
-            lastReadBtn.addEventListener('click', () => {
-                // Redirect ke URL kitab, ditambah dengan hash (#) dari ID bait
-                window.location.href = `${latestData.url}#${latestData.id}`;
-            });
-        } else {
-            // Jika belum ada data, sembunyikan tombol
-            lastReadBtn.style.display = 'none';
-        }
-    });
-    </script>
 </body>
 
 
 </html>
+
