@@ -1,31 +1,41 @@
+// =========================================
+// Penanda bait terakhir dibaca
+// =========================================
 function initReadTracker() {
-  console.log("🟢 initReadTracker() dijalankan");
+  console.log("🟢 initReadTracker() aktif");
 
   const baits = document.querySelectorAll("p[id^='bait-']");
-  console.log("🔢 Jumlah bait yang ditemukan:", baits.length);
+  console.log("🔢 Jumlah bait:", baits.length);
 
-  const lastRead = localStorage.getItem("lastReadBait");
+  const lastReadKey = document.body.getAttribute("data-kitab-name") + "_lastRead"; 
+  const lastRead = localStorage.getItem(lastReadKey);
 
+  // --- Tandai bait terakhir dibaca saat halaman dibuka ---
   if (lastRead) {
     const lastElement = document.getElementById(lastRead);
     if (lastElement) {
-      console.log("📍 Menandai bait terakhir:", lastRead);
       lastElement.classList.add("last-read-marker");
       lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      console.log("📍 Bait terakhir ditemukan:", lastRead);
     }
   }
 
+  // --- Simpan bait yang diklik ---
   baits.forEach(bait => {
     bait.addEventListener("click", () => {
+      // hapus penanda lama
       baits.forEach(b => b.classList.remove("last-read-marker"));
+      // tandai baru
       bait.classList.add("last-read-marker");
-      localStorage.setItem("lastReadBait", bait.id);
+      // simpan ke localStorage dengan nama kitab unik
+      localStorage.setItem(lastReadKey, bait.id);
       console.log("💾 Disimpan bait terakhir:", bait.id);
     });
   });
 }
 
+// Jalankan setelah bait selesai dimuat
 document.addEventListener("baitsLoaded", () => {
-  console.log("📡 Event 'baitsLoaded' diterima oleh read_tracker.js");
+  console.log("📡 Event 'baitsLoaded' diterima — memulai tracker");
   initReadTracker();
 });
