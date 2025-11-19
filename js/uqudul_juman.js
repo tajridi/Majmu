@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("../data/uqudul_juman.json")
     .then(res => res.json())
     .then(baits => {
+      console.log("✅ JSON berhasil dimuat, jumlah bait:", baits.length);
       baits.forEach((bait, i) => {
         const p = document.createElement("p");
         p.id = `bait-${i + 1}`;
@@ -11,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(p);
       });
 
-      // Setelah semua bait ditambahkan, panggil event khusus
+      console.log("✅ Semua bait sudah ditambahkan ke halaman");
       document.dispatchEvent(new Event("baitsLoaded"));
     })
-    .catch(err => console.error("Error memuat bait:", err));
+    .catch(err => console.error("❌ Error memuat bait:", err));
 });
