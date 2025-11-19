@@ -29,6 +29,9 @@ function initReadTracker() {
       bait.classList.add("last-read-marker");
       // simpan ke localStorage dengan nama kitab unik
       localStorage.setItem(lastReadKey, bait.id);
+      // Simpan info kitab terakhir yang dibaca
+localStorage.setItem("lastReadKitab", window.location.pathname);
+localStorage.setItem("lastReadBait", bait.id);
       console.log("💾 Disimpan bait terakhir:", bait.id);
     });
   });
@@ -39,3 +42,4 @@ document.addEventListener("baitsLoaded", () => {
   console.log("📡 Event 'baitsLoaded' diterima — memulai tracker");
   initReadTracker();
 });
+
