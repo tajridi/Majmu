@@ -7,7 +7,18 @@
     <title>Kumpulan Kitab</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <style>.continue-btn, .back-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #998e5f;
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+}
+</style>
 </head>
 
 <body>
@@ -25,9 +36,8 @@
 
     <main id="kitabContainer">
 
-        <button id="lastReadBtn" style="padding: 8px 15px; margin-top: 10px;">
-            Terakhir Dibaca
-        </button>
+        <div id="continue-container" style="text-align:center; margin-top:20px;"></div>
+
         <a class="kitab-card" data-name="alfiah ibnu malik" href="kitab/alfiyah.html">
             <h2>Alfiah Ibnu Malik</h2>
             <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
@@ -68,29 +78,20 @@
 
     <script src="js/script.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const LAST_READ_PREFIX = 'lastRead_';
-        const lastReadBtn = document.getElementById('lastReadBtn');
-        let latestTimestamp = 0; // Nilai awal timestamp paling baru (0 adalah paling lama)
-        let latestData = null;
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("continue-container");
+  const kitabPath = localStorage.getItem("lastReadKitab");
+  const baitID = localStorage.getItem("lastReadBait");
 
-        // 1. Cari data terakhir dibaca dari SEMUA kitab
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            
-            if (key.startsWith(LAST_READ_PREFIX)) {
-                const storedItem = JSON.parse(localStorage.getItem(key));
-                
-                // Ambil timestamp. Gunakan 0 jika data lama belum punya timestamp.
-                const currentTimestamp = storedItem.timestamp || 0; 
-                
-                // Bandingkan: Apakah data ini lebih baru dari yang sudah kita temukan?
-                if (currentTimestamp > latestTimestamp) {
-                    latestTimestamp = currentTimestamp;
-                    latestData = storedItem;
-                }
-            }
-        }
+  if (kitabPath && baitID) {
+    const url = kitabPath + "#" + baitID;
+    container.innerHTML = `
+      <a href="${url}" class="back-btn">لِمُتَابَعَةِ القِرَاءَةِ</a>
+    `;
+  } else {
+    console.log("Belum ada riwayat bacaan terakhir.");
+  }
+});
         
         if (latestData) {
             // 2. Jika data ditemukan (yaitu ada kitab yang sudah dibaca)
@@ -118,5 +119,6 @@
     });
     </script>
 </body>
+
 
 </html>
