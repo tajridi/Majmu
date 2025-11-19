@@ -11,12 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(p);
       });
 
-      // 🔹 Setelah semua bait dimuat, panggil fungsi read tracker
-      if (typeof initReadTracker === "function") {
-        initReadTracker();
-      } else {
-        console.warn("⚠️ Fungsi initReadTracker() belum terdeteksi di read_tracker.js");
-      }
+      // Setelah semua bait ditambahkan, panggil event khusus
+      document.dispatchEvent(new Event("baitsLoaded"));
     })
-    .catch(err => console.error("Error:", err));
+    .catch(err => console.error("Error memuat bait:", err));
 });
