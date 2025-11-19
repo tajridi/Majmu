@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".column");
 
-  fetch("data/nadhom.json")
+  fetch("../data/uqudul_juman.json")
     .then(response => {
       if (!response.ok) throw new Error("Gagal memuat file nadhom.json");
       return response.json();
@@ -20,4 +20,5 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Terjadi kesalahan:", error);
     });
 });
+
 
