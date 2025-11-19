@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumpulan Kitab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>.continue-btn, .back-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: linear-gradient(to right, #d8cfa8, #aa976c);
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+}
+</style>
+</head>
+
+<body>
+    <header>
+        <h1>Kumpulan Kitab</h1>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari kitab...">
+            <button id="searchBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </header>
+
+
+    <main id="kitabContainer">
+
+        <div id="continue-container" style="text-align:center; margin-top:20px;"></div>
+
+        <a class="kitab-card" data-name="alfiah ibnu malik" href="kitab/alfiyah.html">
+            <h2>ألفية ابن مالك</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+
+        <a class="kitab-card" data-name="al-imriti" href="kitab/imriti.html">
+            <h2>Al-'imriti</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+        <a class="kitab-card" data-name="al-Jurumiyah" href="kitab/jurumiyah.html">
+            <h2>al-Jurumiyah</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+
+        <a class="kitab-card" data-name="uqudul_juman" href="kitab/uqudul_juman.html">
+            <h2> عقود الجمان</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+        <a class="kitab-card" data-name="alfiah ibnu malik" href="kitab/alfiah.html">
+            <h2>Alfiah Ibnu Malik</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+
+        <a class="kitab-card" data-name="al-imriti" href="kitab/imriti.html">
+            <h2>Al-'imriti</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+        <a class="kitab-card" data-name="alfiah ibnu malik" href="kitab/alfiah.html">
+            <h2>Alfiah Ibnu Malik</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+
+        <a class="kitab-card" data-name="al-imriti" href="kitab/imriti.html">
+            <h2>Al-'imriti</h2>
+            <p>Kitab tentang tata bahasa Arab yang terkenal.</p>
+        </a>
+    </main>
+
+    <script src="js/script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("continue-container");
+  const kitabPath = localStorage.getItem("lastReadKitab");
+  const baitID = localStorage.getItem("lastReadBait");
+
+  if (kitabPath && baitID) {
+    const url = kitabPath + "#" + baitID;
+    container.innerHTML = `
+      <a href="${url}" class="continue-btn">لِمُتَابَعَةِ القِرَاءَةِ</a>
+    `;
+    console.log("✅ Tombol 'Lanjut Membaca' ditampilkan:", url);
+  } else {
+    console.log("ℹ️ Belum ada riwayat bacaan terakhir.");
+  }
+});
+</script>
+
+</body>
+
+
+</html>
+
+
+
+
